@@ -3,8 +3,8 @@
 #include <time.h>
 
 // void bubble_sort(int arr[], int len);
-void selection_sort(int arr[], int n);
-// void insertion_sort(int arr[], int n);
+// void selection_sort(int arr[], int n);
+void insertion_sort(int arr[], int n);
 
 // void bubble_sort(int arr[], int n)
 // {
@@ -23,40 +23,40 @@ void selection_sort(int arr[], int n);
 //     }
 // }  
 
-void selection_sort(int arr[], int n)
-{  
-    int k=0;
-    while(k<n)
-    {
-        int small=k;
-        for (int i=k+1; i<n; i++)
-        {
-            if(arr[small]>arr[i])
-            {
-                small=i;
-            }
-        }
-        int temp=arr[small];
-        arr[small]=arr[k];
-        arr[k]=temp;
-        k++;
-    }    
-}
-
-// void insertion_sort(int arr[], int n)
+// void selection_sort(int arr[], int n)
 // {  
-//     for (int i=1; i<n; i++)
+//     int k=0;
+//     while(k<n)
 //     {
-//         int current= arr[i];
-//         int j=i-1;
-//         while(arr[j]>current && j>=0)
+//         int small=k;
+//         for (int i=k+1; i<n; i++)
 //         {
-//             arr[j+1]=arr[j];
-//             j--;
+//             if(arr[small]>arr[i])
+//             {
+//                 small=i;
+//             }
 //         }
-//         arr[j+1]=current;
-//     }
+//         int temp=arr[small];
+//         arr[small]=arr[k];
+//         arr[k]=temp;
+//         k++;
+//     }    
 // }
+
+void insertion_sort(int arr[], int n)
+{  
+    for (int i=1; i<n; i++)
+    {
+        int current= arr[i];
+        int j=i-1;
+        while(arr[j]>current && j>=0)
+        {
+            arr[j+1]=arr[j];
+            j--;
+        }
+        arr[j+1]=current;
+    }
+}
 
 // void swap(int *x, int *y)
 // {
@@ -165,7 +165,7 @@ int main(){
     int a[]={5,6,7,3,1,9,2,8,4};
     int len=9;
     
-    selection_sort(a, len);
+    insertion_sort(a, len);
     
     for(int i=0;i<len-1;i++)
     printf("%d,",a[i]);
