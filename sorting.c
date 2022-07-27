@@ -58,116 +58,116 @@
 //     }
 // }
 
-void swap(int *x, int *y)
-{
-  int temp = *x;
-  *x = *y;
-  *y = temp;
-}
-
-void quicksort(int array[], int length)
-{
-  srand(time(NULL));
-  quicksort_recursion(array, 0, length - 1);
-}
-
-void quicksort_recursion(int array[], int low, int high)
-{
-
-  if (low < high)
-  {
-
-    int pivot_index = partition(array, low, high);
-
-    quicksort_recursion(array, low, pivot_index - 1);
-
-    quicksort_recursion(array, pivot_index + 1, high);
-  }
-}
-
-int partition(int array[], int low, int high)
-{
-
-  int pivot_index = low + (rand() % (high - low));
-  
-  if (pivot_index != high)
-    swap(&array[pivot_index], &array[high]);
-  
-  int pivot_value = array[high];
-  
-  int i = low; 
-
-  for (int j = low; j < high; j++)
-  {
-
-    if (array[j] <= pivot_value)
-    {
-      swap(&array[i], &array[j]);
-      i++;
-    }
-  }
-  
-  swap(&array[i], &array[high]);
-  
-  return i;
-}
-
-
-// void merge_sort(int a[], int length)
+// void swap(int *x, int *y)
 // {
-//   merge_sort_recursion(a, 0, length - 1);
+//   int temp = *x;
+//   *x = *y;
+//   *y = temp;
 // }
 
-// void merge_sort_recursion(int a[], int l, int r)
+// void quicksort(int array[], int length)
 // {
-//   if (l < r)
+//   srand(time(NULL));
+//   quicksort_recursion(array, 0, length - 1);
+// }
+
+// void quicksort_recursion(int array[], int low, int high)
+// {
+
+//   if (low < high)
 //   {
-//     int m = l + (r - l) / 2;
-  
-//     merge_sort_recursion(a, l, m);
-//     merge_sort_recursion(a, m + 1, r);
-  
-//     merge_sorted_arrays(a, l, m, r);
+
+//     int pivot_index = partition(array, low, high);
+
+//     quicksort_recursion(array, low, pivot_index - 1);
+
+//     quicksort_recursion(array, pivot_index + 1, high);
 //   }
 // }
 
-// void merge_sorted_arrays(int a[], int l, int m, int r)
+// int partition(int array[], int low, int high)
 // {
-//   int left_length = m - l + 1;
-//   int right_length = r - m;
+
+//   int pivot_index = low + (rand() % (high - low));
   
-//   int temp_left[left_length];
-//   int temp_right[right_length];
+//   if (pivot_index != high)
+//     swap(&array[pivot_index], &array[high]);
   
-//   int i, j, k;
+//   int pivot_value = array[high];
   
-//   for (int i = 0; i < left_length; i++)
-//     temp_left[i] = a[l + i];
-  
-//   for (int i = 0; i < right_length; i++)
-//     temp_right[i] = a[m + 1 + i];
-  
-//   for (i = 0, j = 0, k = l; k <= r; k++)
+//   int i = low; 
+
+//   for (int j = low; j < high; j++)
 //   {
-//     if ((i < left_length) &&
-//         (j >= right_length || temp_left[i] <= temp_right[j]))
+
+//     if (array[j] <= pivot_value)
 //     {
-//       a[k] = temp_left[i];
+//       swap(&array[i], &array[j]);
 //       i++;
 //     }
-//     else
-//     {
-//       a[k] = temp_right[j];
-//       j++;
-//     }
-//   }  
+//   }
+  
+//   swap(&array[i], &array[high]);
+  
+//   return i;
 // }
+
+
+void merge_sort(int a[], int length)
+{
+  merge_sort_recursion(a, 0, length - 1);
+}
+
+void merge_sort_recursion(int a[], int l, int r)
+{
+  if (l < r)
+  {
+    int m = l + (r - l) / 2;
+  
+    merge_sort_recursion(a, l, m);
+    merge_sort_recursion(a, m + 1, r);
+  
+    merge_sorted_arrays(a, l, m, r);
+  }
+}
+
+void merge_sorted_arrays(int a[], int l, int m, int r)
+{
+  int left_length = m - l + 1;
+  int right_length = r - m;
+  
+  int temp_left[left_length];
+  int temp_right[right_length];
+  
+  int i, j, k;
+  
+  for (int i = 0; i < left_length; i++)
+    temp_left[i] = a[l + i];
+  
+  for (int i = 0; i < right_length; i++)
+    temp_right[i] = a[m + 1 + i];
+  
+  for (i = 0, j = 0, k = l; k <= r; k++)
+  {
+    if ((i < left_length) &&
+        (j >= right_length || temp_left[i] <= temp_right[j]))
+    {
+      a[k] = temp_left[i];
+      i++;
+    }
+    else
+    {
+      a[k] = temp_right[j];
+      j++;
+    }
+  }  
+}
 
 int main(){
     int a[]={5,6,7,3,1,9,2,8,4};
     int len=9;
     
-    quicksort(a, len);
+    merge_sort(a, len);
     
     for(int i=0;i<len-1;i++)
     printf("%d,",a[i]);
